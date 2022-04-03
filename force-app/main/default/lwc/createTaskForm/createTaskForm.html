@@ -1,0 +1,73 @@
+<template>
+  <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <lightning-icon
+            icon-name="standard:task"
+            alternative-text="Connected"
+            size="large"
+            title="large size"
+          >
+          </lightning-icon>
+        </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+            <span>New Task</span>
+          </h2>
+        </div>
+      </header>
+    </div>
+    <div class="slds-p-around_medium">
+      <div class="slds-grid">
+        <div class="slds-col slds-size_11-of-12 slds-p-right_x-large">
+          <lightning-input
+            label="Find user"
+            type="search"
+            placeholder="Find user"
+            value={searchInfo}
+            onchange={searchChange}
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-12 slds-m-top_large slds-p-left_x-small">
+          <lightning-button
+            size="small"
+            onclick={handleUserSearch}
+            icon-name="utility:search"
+            icon-position="right"
+          ></lightning-button>
+        </div>
+      </div>
+      <template if:true={isExpanded}>
+        <div style="max-height: 200px;">
+          <lightning-datatable
+          key-field="id"
+          data={searchUsers}
+          columns={columns}
+          onrowselection={datatableHandle}
+          max-row-selection="1"
+          hide-table-header="true"
+          ></lightning-datatable>
+        </div>
+      </template>
+      <lightning-input
+        type="text"
+        label="Description"
+        onchange={descriptionChange}
+      ></lightning-input>
+      <lightning-input
+        type="date"
+        label="Due date"
+        min={minDateValue}
+        onchange={dateChange}
+      ></lightning-input>
+    </div>
+    <footer class="slds-modal__footer slds-p-around_medium">
+      <lightning-button
+        label="Create Task"
+        disabled={disableButton}
+        onclick={saveTask}
+      ></lightning-button>
+    </footer>
+  </article>
+</template>
