@@ -39,7 +39,7 @@
         </div>
       </div>
       <template if:true={isExpanded}>
-        <div style="max-height: 200px;">
+        <div style="max-height: 200px; overflow: auto">
           <lightning-datatable
           key-field="id"
           data={searchUsers}
